@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Character/CharacterBase.h"
+#include "InputActionValue.h"
 #include "PlayerCharacter.generated.h"
+
+class USpringArmComponent;
+class UCameraComponent;
 
 /**
  * 
@@ -14,4 +18,8 @@ class RPG_DARKSOUL_API APlayerCharacter : public ACharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+
+	void Look(const FInputActionValue& Value);
+
 };
