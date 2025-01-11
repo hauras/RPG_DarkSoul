@@ -41,8 +41,8 @@ private:
     void Jump(); 	// 점프
 
 	UPROPERTY(EditAnywhere, Category = "Input")
-	UInputAction* AttackAction;
-	
+	TObjectPtr<UInputAction> AttackAction;
+	void Attack(); // 함수 이름 변경	
 
 
 };

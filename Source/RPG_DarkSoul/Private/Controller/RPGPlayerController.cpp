@@ -39,7 +39,7 @@ void ARPGPlayerController::SetupInputComponent()
     EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ARPGPlayerController::Look);
     EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ARPGPlayerController::Jump);
 
-    //EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ARPGPlayerController::Attack);
+    EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ARPGPlayerController::Attack);
 
 }
 
@@ -79,3 +79,11 @@ void ARPGPlayerController::Jump()
     }
 }
 
+void ARPGPlayerController::Attack()
+{
+    // 현재 플레이어가 조종 중인 캐릭터를 가져와서 공격 명령 전달
+    if (APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(GetPawn()))
+    {
+        PlayerCharacter->PerformAttack();
+    }
+}
