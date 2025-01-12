@@ -38,7 +38,7 @@ ACharacterBase::ACharacterBase()
 
 void ACharacterBase::AttackCheck()
 {
-    UE_LOG(LogTemp, Warning, TEXT("AuroraCharacter AttackCheck called!"));
+    
 
     // 충돌 검사 매개변수 설정
     FCollisionQueryParams Params(SCENE_QUERY_STAT(Attack), false, this); // 충돌 쿼리 파라미터 생성
@@ -63,10 +63,21 @@ void ACharacterBase::AttackCheck()
         FCollisionShape::MakeSphere(AttackRadius), // 구체 형태 설정
         Params); // 쿼리 파라미터 적용
 
-    if (HitDetected) // 충돌 발생 시 처리 (현재 비어 있음)
+    if (HitDetected)
+{
+    if (OutHitResult.GetActor())
     {
-        // 충돌 처리 로직 추가 가능
+        UE_LOG(LogTemp, Warning, TEXT("Hit Actor: %s"), *OutHitResult.GetActor()->GetName());
     }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("HitDetected is true, but no actor was hit."));
+    }
+}
+else
+{
+    UE_LOG(LogTemp, Warning, TEXT("No Hit Detected"));
+}
 
     // 디버그 캡슐 출력
 #if ENABLE_DRAW_DEBUG
